@@ -1,15 +1,17 @@
 import Navbar from './Navbar';
-import Home from './Home';
+import Table from './Table';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <div className='content'>
-        <Home />
+        <Table />
       </div>
     </div>
   );
 }
 
 export default App;
+
+

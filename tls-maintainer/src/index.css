@@ -6,12 +6,13 @@
   font-family: "Quicksand";
   color: #333;
 }
+
+/*Navbar styles */
 .navbar {
-  padding: 20px;
+  padding: 1%;
   display: flex;
   align-items: center;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 100%;
   border-bottom: 1px solid #f2f2f2;
 }
 .navbar h1 {
@@ -19,17 +20,45 @@
 }
 .navbar .links {
   margin-left: auto;
+  display:flex;
 }
 .navbar a {
-  margin-left: 16px;
+  padding: 12px;
+  display: flex;
   text-decoration: none;
-  padding: 6px;
 }
 .navbar a:hover {
   color: #f1356d;
 }
+/*Navbar styles */
+
+
 .content {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
+  max-width: 95%;
+  margin: 1%;
+  padding: .5%;
 }
+
+.table h3 {
+  display:inline;
+  padding: 10px 180px;
+  width:50%;
+}
+
+
+/* Entry-view */
+.entry-view {
+  padding: 10px 16px;
+  display:flex;
+}
+.entry-view:hover {
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  outline-style: solid;
+}
+.entry-view h2 {
+  font-size: 20px;
+  color: #f1356d;
+  width:50%;
+}
+
+/* Entry-view */

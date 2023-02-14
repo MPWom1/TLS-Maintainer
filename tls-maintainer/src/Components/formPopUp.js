@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useState } from 'react';
 
 
 
@@ -20,19 +21,54 @@ export default function FormDialog() {
     setOpen(false);
   };
 
-  const formSubmit = () => {
+
+
+//   const formSubmit = (event) => {
+//     //event.preventDefault();
+//     fetch("/database/postOne", {
+//         method: "POST",
+//         body: JSON.stringify({
+            
+//     }),
+//         headers: {
+//             "Content-type": "application/json; charset=UTF-8"
+//         }
+//     });
+//     handleClose();
+//   };
+
+  const [formInfo, setFormInfo] = useState({
+    CN: "",
+    Issued: "",
+    Expires: ""
+  });
+
+  const handleChange = (event) => {
+    setFormInfo((prevState) => ({
+        ...prevState,
+        [event.target.name]: event.target.value,
+    }));
+    };                                  
+  
+
+  const handleSubmit = (event) => {
+    //event.preventDefault();
     fetch("/database/postOne", {
         method: "POST",
         body: JSON.stringify({
-            CN: "*Toyota.com",
-            Issued: new Date("2023-1-22"),
-            Expires: new Date("2024-1-22")
+            formInfo
     }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
     });
-  };
+
+    console.log(formInfo);
+
+    setFormInfo({ CN: "", Issued: "", Expires: "" });
+    handleClose();
+};
+
 
   return (
     <div className='navbarButton'>
@@ -45,60 +81,50 @@ export default function FormDialog() {
           <DialogContentText>
             Please insert a Common Name, its Date of Issue, and Date of Expiration.
           </DialogContentText>
-          <TextField
-            margin="dense"
-            id="CommonName"
-            label="Common Name (CN)"
-            type="string"
-            fullWidth
-            variant="standard"
-            required
-          />
-          <TextField
-            margin="normal"
-            id="IssuedDate"
-            label="Issued Date"
-            type="date"
-            variant="standard"
-            required
-            InputLabelProps={{ shrink: true }}
-          />
-          <TextField
-            margin="normal"
-            id="ExpirationDate"
-            label="Expiration Date"
-            type="date"
-            variant="standard"
-            required
-            InputLabelProps={{ shrink: true }}
-          />
+          <form onSubmit={handleSubmit}>
+            <TextField
+                type="text"
+                name="CN"
+                value={formInfo.CN}
+                onChange={handleChange}
+
+                label="Common Name (CN)"
+                margin="dense"
+                fullWidth
+                variant="standard"
+                required
+            />
+            <TextField
+                type="date"
+                name="Issued"
+                value={formInfo.Issued}
+                onChange={handleChange}
+
+                label="Issued Date"
+                margin="normal"
+                variant="standard"
+                required
+                InputLabelProps={{ shrink: true }}              //Prevents label and date entered from overlapping
+            />
+            <TextField
+                type="date"
+                name="Expires"
+                value={formInfo.Expires}
+                onChange={handleChange}
+
+                label="Expiration Date"
+                margin="normal"
+                variant="standard"
+                required
+                InputLabelProps={{ shrink: true }}              //Prevents label and date entered from overlapping
+            />
+        </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={formSubmit}>Submit</Button>
+          <Button onClick={handleSubmit}>Submit</Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 }
-
-
-
-
-
-
-
-
-{/* <Button onClick= {() =>         //Posts data to collection, needs inputs from form
-                    fetch("/database/postOne", {
-                        method: "POST",
-                        body: JSON.stringify({
-                            CN: "*Toyota.com",
-                            Issued: new Date("2023-1-22"),
-                            Expires: new Date("2024-1-22")
-                    }),
-                        headers: {
-                            "Content-type": "application/json; charset=UTF-8"
-                        }
-                    })
-                    }> New Entry </Button> */}

@@ -13,7 +13,7 @@ export async function insertOneDocument() {
     await client.connect();
     const database = client.db('CA_DB');
     const collection = database.collection('CN_EXP');
-    inputOne = await collection.insertOne( { CN: "*Toyota.com", Issued: new Date("2023-1-22"), Expires: new Date("2024-1-22") } );    //Convert to variables for New Entry button
+    inputOne = await collection.insertOne( { CN: "", Issued: "", Expires: "" } );    //Convert to variables for New Entry button
 
   } finally {
     await client.close();                                           //Ensures that the client will close when you finish/error

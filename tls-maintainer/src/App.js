@@ -1,10 +1,12 @@
-import Navbar from './Navbar';
-import Table from './Table';
+import Navbar from './Components/Navbar';
+import Table from './Components/Table';
+import FormDialog from './Components/formPopUp';
+
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+        <Navbar/> <FormDialog/>
       <div className='content'>
         <Table />
       </div>

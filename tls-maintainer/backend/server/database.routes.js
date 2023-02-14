@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getNumberOfDocuments, getAllDocuments } from "./db/conn.js";               //Imports /get queries
+import { getNumberOfDocuments, getAllDocuments, insertOneDocument } from "./db/conn.js";               //Imports /get queries
 
 export const databaseRouter = Router();
 
@@ -15,5 +15,12 @@ databaseRouter.get("/getAll", async (req, res) => {
     const data = await getAllDocuments();
     res.json({
         data
+    });
+});
+
+databaseRouter.post("/postOne", async (req, res) => {
+    const postData = await insertOneDocument();
+    res.json({
+        postData
     });
 });

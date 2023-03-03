@@ -21,54 +21,41 @@ export default function FormDialog() {
     setOpen(false);
   };
 
+  var [cn, setCN] = useState()
+  var [issued, setIssued] = useState()
+  var [expires, setExpires] = useState()
 
 
-//   const formSubmit = (event) => {
-//     //event.preventDefault();
-//     fetch("/database/postOne", {
-//         method: "POST",
-//         body: JSON.stringify({
-            
-//     }),
-//         headers: {
-//             "Content-type": "application/json; charset=UTF-8"
-//         }
-//     });
-//     handleClose();
-//   };
+  const cnUpdate=(event)=>{                         // Dealing with name field changes to update our state
+    setCN(event.target.value)
+  }
 
-  const [formInfo, setFormInfo] = useState({
-    CN: "",
-    Issued: "",
-    Expires: ""
-  });
+  const issuedUpdate=(event)=>{                         
+    setIssued(event.target.value)
+  }
 
-  const handleChange = (event) => {
-    setFormInfo((prevState) => ({
-        ...prevState,
-        [event.target.name]: event.target.value,
-    }));
-    };                                  
+  const expiresUpdate=(event)=>{                         
+    setExpires(event.target.value)
+  }
+
+
+  const handleSubmit = () => {
+    const postURL = "/api/staff"
+    fetch(postURL, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        cn: cn,
+        issued: issued,
+        expires: expires
+      })
+    })
+    handleClose()                                 //Closes form after submitting
+  }  
   
-
-  const handleSubmit = (event) => {
-    //event.preventDefault();
-    fetch("/database/postOne", {
-        method: "POST",
-        body: JSON.stringify({
-            formInfo
-    }),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        }
-    });
-
-    console.log(formInfo);
-
-    setFormInfo({ CN: "", Issued: "", Expires: "" });
-    handleClose();
-};
-
 
   return (
     <div className='navbarButton'>
@@ -85,9 +72,7 @@ export default function FormDialog() {
             <TextField
                 type="text"
                 name="CN"
-                value={formInfo.CN}
-                onChange={handleChange}
-
+                onChange={cnUpdate}
                 label="Common Name (CN)"
                 margin="dense"
                 fullWidth
@@ -97,9 +82,7 @@ export default function FormDialog() {
             <TextField
                 type="date"
                 name="Issued"
-                value={formInfo.Issued}
-                onChange={handleChange}
-
+                onChange={issuedUpdate}
                 label="Issued Date"
                 margin="normal"
                 variant="standard"
@@ -109,9 +92,7 @@ export default function FormDialog() {
             <TextField
                 type="date"
                 name="Expires"
-                value={formInfo.Expires}
-                onChange={handleChange}
-
+                onChange={expiresUpdate}
                 label="Expiration Date"
                 margin="normal"
                 variant="standard"

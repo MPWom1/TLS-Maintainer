@@ -13,7 +13,7 @@ const newRouter = function (collection) {                       // This function
   }
   
 
-  router.get('/', (req, res) => {                                // Route for getting all staff data
+  router.get('/getAll', (req, res) => {                                // Route for getting all staff data
     collection
       .find()
       .toArray()
@@ -41,7 +41,7 @@ const newRouter = function (collection) {                       // This function
   });
 
 
-  router.post('/', (req, res) => {                              // Route for creating new staff
+  router.post('/entry', (req, res) => {                              // Route for creating new staff
     const newData = req.body;
     collection
     .insertOne(newData)     

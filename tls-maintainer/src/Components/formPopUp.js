@@ -40,7 +40,7 @@ export default function FormDialog() {
 
 
   const handleSubmit = () => {
-    const postURL = "/api/staff"
+    const postURL = "/api/entry"
     fetch(postURL, {
       method: 'POST',
       headers: {

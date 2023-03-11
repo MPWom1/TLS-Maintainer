@@ -2,7 +2,6 @@ import DataTable from 'react-data-table-component'
 import React, { useEffect } from 'react';
 import { useState } from "react"
 
-
 //data table config ---->>>>     https://react-data-table-component.netlify.app/?path=/docs/getting-started-examples--page
 
 function Table() {
@@ -10,17 +9,16 @@ function Table() {
  const [getAllData, setGetAllData] = useState( [ {cn: 'No Entry found', issued: '01-01-9999', expires: '01-01-9999', days: 0, id: 1} ] );  
 
   useEffect(() => {
-    fetchData();
+    fetchData()
   }, [])
 
-  async function fetchData() {
+  function fetchData() {
     fetch("/api/getAll")
       .then(res => res.json()) 
       .then(json => {
         setGetAllData(json)
       });
-  } 
-
+  };
 
 
   const columns = [                                   //Columns and keys
@@ -36,14 +34,7 @@ function Table() {
     name: "Expires",
     selector: (row) => (row.expires),
   },
-  {
-    name: "Days till expiration",
-    selector: (row) => (row.days),
-    sortable: true,
-    right: true
-  }
   ]
-
 
 
   return (
@@ -62,5 +53,4 @@ function Table() {
   )
 }
 export default Table
-
 

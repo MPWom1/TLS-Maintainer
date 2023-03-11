@@ -38,6 +38,10 @@ export default function FormDialog() {
     setExpires(event.target.value)
   }
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
 
   const handleSubmit = () => {
     const postURL = "/api/entry"
@@ -53,7 +57,8 @@ export default function FormDialog() {
         expires: expires
       })
     })
-    handleClose()                                 //Closes form after submitting
+    handleClose();                                 //Closes form after submitting
+    refreshPage();
   }  
   
 

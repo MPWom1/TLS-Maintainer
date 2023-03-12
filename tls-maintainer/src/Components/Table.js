@@ -21,20 +21,61 @@ function Table() {
   };
 
 
+  //convert to utc  >> minus difference >> convert utc difference into days
+
+  function dayDiff(input) {
+    const today = new Date();
+    const expirationDate = new Date(input);
+
+    var Difference_In_Time = expirationDate.getTime() - today.getTime();
+
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+    var rounded = Math.round(Difference_In_Days)
+
+    if(rounded > 0){
+      return (rounded)
+    };
+    if(rounded <= 0){
+      return (0)
+    };
+  };
+  
+
   const columns = [                                   //Columns and keys
   {
     name: "CN",
-    selector: (row) => (row.cn),
+    selector: (row) => (row.cn)
   },
   {
     name: "Issued",
-    selector: (row) => (row.issued),
+    selector: (row) => (row.issued)
   },
   {
     name: "Expires",
-    selector: (row) => (row.expires),
+    selector: (row) => (row.expires)
   },
+  {
+    name: "Days till Expiration",
+    selector: (row) => (dayDiff(row.expires)),
+    sortable: true,
+  }
   ]
+
+  const conditionalRowStyles = [
+    {
+      when: row => (dayDiff(row.expires)) < 1,
+      style: {
+        backgroundColor: 'red',
+      }
+    },
+    {
+      when: row => (dayDiff(row.expires)) < 30 && (dayDiff(row.expires)) > 0,
+      style: {
+        backgroundColor: "#AFB53347",
+      }
+    }
+  ];
 
 
   return (
@@ -42,6 +83,7 @@ function Table() {
       <DataTable
         columns={columns}
         data={getAllData}
+        conditionalRowStyles={conditionalRowStyles}
         selectableRows
         selectableRowsHighlight
         pagination

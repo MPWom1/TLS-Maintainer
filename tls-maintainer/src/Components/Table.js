@@ -4,9 +4,10 @@ import { useState } from "react"
 
 //data table config ---->>>>     https://react-data-table-component.netlify.app/?path=/docs/getting-started-examples--page
 
-function Table() {
+export default function Table() {
 
- const [getAllData, setGetAllData] = useState( [ {cn: 'No Entry found', issued: '01-01-9999', expires: '01-01-9999', days: 0, id: 1} ] );  
+  const [getAllData, setGetAllData] = useState( [ {cn: 'No Entry found', issued: '01-01-9999', expires: '01-01-9999', days: 0, id: 1} ] );  
+
 
   useEffect(() => {
     fetchData()
@@ -40,7 +41,7 @@ function Table() {
       return (0)
     };
   };
-  
+
 
   const columns = [                                   //Columns and keys
   {
@@ -77,6 +78,7 @@ function Table() {
     }
   ];
 
+  
 
   return (
     <div style={{ margin: "20px" }}>
@@ -94,5 +96,4 @@ function Table() {
     </div>
   )
 }
-export default Table
 

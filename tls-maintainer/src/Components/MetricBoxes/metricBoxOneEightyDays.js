@@ -2,7 +2,7 @@ import { Box, ThemeProvider, createTheme } from '@mui/system';
 import { useState, useEffect } from 'react';
 
 
-export default function BoxComponent() {
+export default function BoxComponentOneEightyDays() {
 
   const theme = createTheme({
         palette: {
@@ -22,20 +22,19 @@ export default function BoxComponent() {
         },
   });
       
-  const [totalEntry, setTotalEntry] = useState ( [ "0 - No entries found" ]);
+  const [expireOneEightyDays, setExpireOneEightyDays] = useState ( [ "0 - No entries found" ]);
 
   useEffect(() => {
-    fetchDataCount();
+    fetchExpiredOneEightyCount();
   }, []);
     
-  function fetchDataCount() {
-    fetch("/api/getAllCount")
+  function fetchExpiredOneEightyCount() {
+    fetch("/api/getOneEightyDayExpires")
       .then(res => res.json()) 
       .then(json => {
-        setTotalEntry(json)
+        setExpireOneEightyDays(json)
     });
   };
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -45,12 +44,12 @@ export default function BoxComponent() {
           boxShadow: 1,
           borderRadius: 2,
           p: 2,
-          minWidth: 300,
+          minWidth: 16,
         }}
       >
-        <Box sx={{ color: 'text.secondary' }}>Total Certificates</Box>
+        <Box sx={{ color: 'text.secondary' }}>{'> 180 Days'}</Box>
         <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
-          {totalEntry}
+          {expireOneEightyDays}
         </Box>
       </Box>
     </ThemeProvider>

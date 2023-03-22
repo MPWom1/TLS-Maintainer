@@ -42,7 +42,6 @@ export default function FormDialog() {
     window.location.reload(false);
   }
 
-
   const handleSubmit = () => {
     const postURL = "/api/entry"
     fetch(postURL, {

@@ -7,13 +7,17 @@ import BoxComponentTenDays from './Components/MetricBoxes/metricBoxTenDays';
 import BoxComponentThirtyDays from './Components/MetricBoxes/metricBoxThirtyDays';
 import BoxComponentNinetyDays from './Components/MetricBoxes/metricBoxNinetyDays';
 import BoxComponentOneEightyDays from './Components/MetricBoxes/metricBoxOneEightyDays';
+import Logo from './Components/logo';
 import Grid from '@mui/material/Grid';
+
 
 function App() {
 
   return (
     <div className="App">
-        <Navbar/> <FormDialog/>
+      <Grid container rowSpacing={1}>
+        <Logo/> <Navbar/> <FormDialog/>
+      </Grid>
       <div className='content'>
         <Grid container rowSpacing={1}>
           <BoxComponentTotal /> <BoxComponentExpired /> <BoxComponentTenDays /> <BoxComponentThirtyDays /> <BoxComponentNinetyDays /> <BoxComponentOneEightyDays />

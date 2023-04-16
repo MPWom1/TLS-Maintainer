@@ -42,24 +42,38 @@ export default function FormDialog() {
     window.location.reload(false);
   }
 
+  const [hasError, setError] = React.useState(false);
   const handleSubmit = () => {
     const postURL = "/api/entry"
-    fetch(postURL, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        cn: cn,
-        issued: issued,
-        expires: expires
+    try{
+      fetch(postURL, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          cn: cn,
+          issued: issued,
+          expires: expires
+        })
       })
-    })
+    }
+    catch(error) {
+      console.log(error)                                                    //Change console to other logging system
+      setError(true);
+    }  
+    if (hasError) {
+      return <h1>Sorry, Entry Failed to Submit! Please try again.</h1>;
+    }
+
     handleClose();                                 //Closes form after submitting
     refreshPage();
   }  
   
+
+
+
 
   return (
     <div className='navbarButton'>

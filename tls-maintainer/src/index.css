@@ -9,28 +9,24 @@
 
 /*Navbar styles */
 .navbar {
-  padding: 1%;
+  padding-left: 4%;
+  padding-top: 1.2%;
+
   display: flex;
-  align-items: center;
   max-width: 100%;
-  border-bottom: 1px solid #f2f2f2;
+  position: fixed;
 }
 .navbar h1 {
   color: #f1356d;
 }
-.navbar .links {
-  margin-left: auto;
-  display:flex;
-}
-.navbar a {
-  padding: 12px;
+.navbarButton {
+  padding: 1%;
+  margin-left:89%;
   display: flex;
-  text-decoration: none;
+  positon: fixed;
+  max-width: 100%;
 }
-.navbar a:hover {
-  color: #f1356d;
-}
-/*Navbar styles */
+
 
 
 .content {
@@ -62,3 +58,14 @@
 }
 
 /* Entry-view */
+
+/* Logo */
+img {
+  width: 2%;
+  height: 2%;
+  padding-left: .5%;
+  padding-top: .9%;
+}
+
+
+/* Logo */
